@@ -5,7 +5,6 @@
 
 using namespace std;
 #if 0
-// O(N*log(k))
 class Solution {
 public:
   using PairT = pair<int, int>;
