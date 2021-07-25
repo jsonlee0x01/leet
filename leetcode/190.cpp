@@ -21,6 +21,7 @@ public:
   }
 };
 
+// 解法2: 更加容易理解的版本
 class Solution1 {
   uint32_t reverseBits(uint32_t n) {
     uint32_t ans = 0;

@@ -25,7 +25,6 @@ public:
 };
 
 // 解法 2: 由于输入是有序的，所以利用俩指针也能解决
-
 class Solution02 {
 public:
   vector<int> twoSum(vector<int> &numbers, int target) {
