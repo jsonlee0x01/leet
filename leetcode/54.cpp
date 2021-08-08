@@ -17,7 +17,7 @@ public:
       for (int i = beginX; i <= endX; ++i) {
         ans.push_back(matrix[beginY][i]);
       }
-      if (++beginX > endY) {
+      if (++beginY > endY) {
         break;
       }
       // 从上到下
