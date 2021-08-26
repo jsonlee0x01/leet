@@ -1,50 +1,54 @@
 #include <stack>
 #include <string>
-
 using namespace std;
+
 class Solution {
 public:
-  bool isValid(string s) {
-    stack<char> match;
-    for (int i = 0; i < s.size(); ++i) {
-      if (s[i] == '(' || s[i] == '[' || s[i] == '{') {
-        match.push(s[i]);
-      } else if (s[i] == ')') {
-        if (!match.empty()) {
-          if (match.top() == '(') {
-            match.pop();
-          } else {
-            return false;
-          }
-        } else {
-          return false;
+    bool isValid(string s)
+    {
+        stack<char> symbol;
+        for (int i = 0; i < s.size(); ++i) {
+            if (s[i] == '(' || s[i] == '[' || s[i] == '{') {
+                symbol.push(s[i]);
+            } else if (s[i] == ')') {
+                if (symbol.empty() || symbol.top() != '(') {
+                    return false;
+                }
+                symbol.pop();
+            } else if (s[i] == ']') {
+                if (symbol.empty() || symbol.top() != '[') {
+                    return false;
+                }
+                symbol.pop();
+            } else if (s[i] == '{') {
+                if (symbol.empty() || symbol.top() != '}') {
+                    return false;
+                }
+                symbol.pop();
+            }
         }
-      } else if (s[i] == ']') {
-        if (!match.empty()) {
-          if (match.top() == '[') {
-            match.pop();
-          } else {
-            return false;
-          }
-        } else {
-          return false;
-        }
-      } else if (s[i] == '}') {
-        if (!match.empty()) {
-          if (match.top() == '{') {
-            match.pop();
-          } else {
-            return false;
-          }
-        } else {
-          return false;
-        }
-      }
+        return symbol.empty();
     }
-    if (match.empty()) {
-      return true;
-    } else {
-      return false;
+};
+
+class Solution1 {
+public:
+    bool isValid(string s)
+    {
+        stack<char> symbol;
+        for (int i = 0; i < s.size(); ++i) {
+            if (s[i] == '(') {
+                symbol.push(')');
+            } else if (s[i] == '[') {
+                symbol.push(']');
+            } else if (s[i] == '{') {
+                symbol.push('}');
+            } else if (symbol.empty() || symbol.top() != s[i]) {
+                return false;
+            } else {
+                symbol.pop();
+            }
+        }
+        return symbol.empty();
     }
-  }
 };
